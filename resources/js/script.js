@@ -10,39 +10,75 @@
                 document.querySelector("nav").classList.remove("sticky");
             }
         },
-        offset: '60px'
+        offset: "60px"
+    });  
+    
+    // smooth scroll to anchor tags
+    document.querySelectorAll("a[href^='#']").forEach(a => {
+        a.addEventListener("click", function(e) {
+            e.preventDefault();
+            
+            document.querySelector(this.getAttribute("href")).scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });            
+        });               
+    });
+    
+    //Animation on scroll
+    var wp1 = new Waypoint({
+        element: document.getElementsByClassName("js--wp-1")[0],
+        handler: function() {            
+            this.element.classList.add("animated", "fadeIn");
+        },
+        offset: "50%"
+    });    
+    var wp2 = new Waypoint({
+        element: document.getElementsByClassName("js--wp-2")[0],
+        handler: function() {            
+            this.element.classList.add("animated", "fadeInUp");
+        },
+        offset: "50%"
+    });    
+     var wp3 = new Waypoint({
+        element: document.getElementsByClassName("js--wp-3")[0],
+        handler: function() {            
+            this.element.classList.add("animated", "fadeIn");
+        },
+        offset: "50%"
+    });    
+     var wp4 = new Waypoint({
+        element: document.getElementsByClassName("js--wp-4")[0],
+        handler: function() {            
+            this.element.classList.add("animated", "pulse");
+        },
+        offset: "50%"
     });
 
+    // Google Maps
+    // Lisbon
+    var lat = 38.7309678;
+    var lng = -9.1526506;    
+    var pointLat = 38.7255883;
+    var pointLng = -9.1398226;
+             
+    var map = new GMaps({
+        div: "map",
+        lat: lat, 
+        lng: lng,
+        zoom: 12
+    });
     
-    // Smooth Scrolling
-//    window.scroll({
-//      top: 2500, 
-//      left: 0, 
-//      behavior: 'smooth' 
-//    });
-//    
-     
-
-    document.querySelector(".js--scroll-to-plans").addEventListener("click", scrollToPlans); 
+    var center = map.getCenter();
     
-    
-    function scrollToPlans() {
-        var elem = document.getElementById("plans");
-        elem.scrollIntoView({behavior: "smooth", block: "start"});        
-    }
-    
-    //<section class="section-plans js--section-plans" id="plans">
-    
-//    document.querySelector(".js--scroll-to-plans").addEventListener('click', function() {
-//       document.querySelector(".js--section-plans").scrollIntoView({
-//           behavior: 'smooth'
-//       });
-//    });
-    
-    // Scroll to a certain element
-//    document.querySelector('.hello').scrollIntoView({ 
-//      behavior: 'smooth' 
-//    });
+    map.addMarker({
+        lat: pointLat, 
+        lng: pointLng,
+        title: "Lisbon",
+        infoWindow: {
+            content: "<p>Our Lisbon HQ</p>"
+        }        
+    });    
 
     
 })(window, document);
