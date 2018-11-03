@@ -174,7 +174,7 @@ input[type=submit]:active {
 .btn-full:hover,
 .btn-full:active,
 input[type=submit] {    
-    border: 1px solid #0e5e76;
+    border: 1px solid #1a9fb7;
     cursor: pointer;
 }
 
